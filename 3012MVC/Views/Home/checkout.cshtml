@@ -1,0 +1,88 @@
+﻿@model _3012MVC.Models.DonHangTongQuan
+@{
+	ViewBag.Title = "checkout";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="checkout-page">
+	<div class="container">
+		<div class="col-xs-12 no-margin">
+
+			<!--Order-->
+
+			@using (Html.BeginForm("checkout", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+			{
+				<h2 class="border h1">Thông tin khách hàng :</h2>
+				<div class="form-group">
+					@Html.Label("Người mua :", new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.buyer, new { @class = "form-control", required = "required" })
+						@Html.ValidationMessageFor(m => m.buyer)
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.Label("Người nhận :", new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.seller, new { @class = "form-control", required = "required", placeholder = @Model.buyer })
+						@Html.ValidationMessageFor(m => m.seller)
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.Label("Điện thoại :", new { type = "number", @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.phoneNumber, new { @type = "number", @class = "form-control", required = "required" })
+						@Html.ValidationMessageFor(m => m.phoneNumber)
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.Label("Địa chỉ :", new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.address, new { @class = "form-control", required = "required" })
+						@Html.ValidationMessageFor(m => m.address)
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.Label("Ghi chú :", new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.Note)
+					</div>
+				</div>
+				<section id="shipping-address">
+					<h2 class="border h1">Phương thức thanh toán?</h2>
+					<div class="row field-row">
+						<div class="col-xs-12">
+							<input class="le-checkbox big" type="checkbox" />
+							<a class="simple-link bold" href="#">thanh toán momo</a>
+
+						</div>
+					</div><!-- /.field-row -->
+
+				</section><!-- /#shipping-address -->
+				<br>
+				<br>
+				<div class="row">
+					<div class="col-xs-12 col-sm-3 no-margin">
+						<a href="#" class="thumb-holder">
+							<img src="~/images/products/momo.jpg" />
+						</a>
+					</div>
+				</div>
+				<div id="payment-method-options">
+					<div class="payment-method-option">
+						<input class="le-radio" type="radio" name="group2" value="Direct">
+						<div class="radio-label bold ">
+							Stk ngân hàng chúng tôi<br>
+						</div>
+					</div><!-- /.payment-method-option -->
+
+
+				</div><!-- /#payment-method-options -->
+
+				<div class="place-order-button">
+					<input type="submit" class="le-button big" value="Đặt hàng" />
+				</div><!-- /.place-order-button -->
+			}
+
+		</div><!-- /.col -->
+	</div><!-- /.container -->
+</section><!-- /#checkout-page -->
